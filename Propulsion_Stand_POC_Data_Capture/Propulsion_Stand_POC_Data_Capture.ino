@@ -61,15 +61,16 @@ ISR(TIMER0_COMPA_vect){
   //read pressure
   pressure = analogRead(A0);
   pressure = map(pressure, 101, 920.7, 0, 2000);
-   if (isnan(pressure)) {
+   if (isnan(pressure)) 
     pressure = 0;
-   }
+   sensorReading_Pressure = pressure;
+
 
   //read temperature
   double temp = thermocouple.readCelsius();
-   if (isnan(temp)) {
+   if (isnan(temp)) 
     temp = 0;
-   }
+   sensorReading_Temp = temp;
    
   //store data
   dataString = String(sensorReading_Temp) + "," + String(sensorReading_Pressure); // convert to CSV
