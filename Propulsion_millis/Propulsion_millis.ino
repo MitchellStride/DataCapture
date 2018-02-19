@@ -17,9 +17,9 @@ Adafruit_MAX31855 thermocouple(MAXCS);
 // Setup startSwitch
 const int startSwitch = 2;
 
-bool runOnce = 1;
 int pressure;
 double temp;
+unsigned long STARTms;
 
 void setup() {
   //Configuring Pins
@@ -35,14 +35,10 @@ void setup() {
 
   while (startSwitch == 1) {}
   Serial.println("Input Received, Test begin..");
+  STARTms = millis();
 }
 
 void loop() {
-  if(runOnce == 1){
-    unsigned long STARTms = millis();
-    runOnce = 0;
-  }
-  
   if ((millis() - STARTms) >= 8000) { //Run test for 8s
 
     //read pressure
